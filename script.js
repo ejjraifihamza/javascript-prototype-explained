@@ -1,32 +1,34 @@
-// ! create an 'engine' object, and performance
+// ! create an object 'engine'
 const engine = {
-  type: "v8",
-};
-
-const performance = {
-  value: "123mb",
+  type: "Blink",
+  license: "GNU LGPL",
+  status: "Active",
 };
 
 // ! create a constructor 'Browser'
-function Browser(name) {
-  this._name = name;
-}
+function Browser() {}
 
-// ! Reference the object 'engine' to the prototype of 'Browser'
+// ! Reference an object 'engine' to the constructor 'Browser'
 Browser.prototype = engine;
 
-// ! create an instance of the 'Browser' constructor
-const browser = new Browser("google chrome");
-console.log(browser.type); // v8
-/*
- * so when you reference the obj 'engine' to the prototype of 'browser',
- * all properties of engine object are accessible from 'browser'
- */
+// ! Create a new instance of the 'Browser' constructor
+const browser = new Browser();
 
-// ! check if an object is a prototype of the constructor
-console.log(engine.isPrototypeOf(browser)); // true
-console.log(engine.isPrototypeOf(performance)); // false
+// ! Give the selected propreties different values
+browser.type = "Gecko";
+browser.license = "Mozilla license";
 
-// * other way
-console.log(Object.getPrototypeOf(browser) == engine); // true
-console.log(Object.getPrototypeOf(browser) == performance); // false
+// ? Access to these properties
+console.log(browser.type); // Gecko
+console.log(browser.license); // Mozilla license
+console.log(browser); // {type: 'Gecko', license: 'Mozilla license'}
+
+// ? Look for a property that doesn't exist in the 'browser' object
+console.log(browser.status); // Active
+
+// ? Access to the secret link that acces to the 'prototype' object
+console.log(browser.__proto__); // {type: 'Blink', license: 'GNU LGPL', status: 'Active'}
+
+// ? check if the object 'engine' referenced to the 'Browser.prototype'
+// ? is the same as the object showed in 'browser.__proto__'
+console.log(browser.__proto__ === engine); // true
