@@ -20,7 +20,7 @@ player.apply();
 console.log(player.length); // give how many arg in function
 // ? when you create a function you can access prototype and make it object
 console.log(typeof player.prototype); // object
-// * Initial value 'prototype' empty object its like you create a new object (player.prototype = {}) een if the function is contain some code
+// * Initial value 'prototype' empty object its like you create a new object (player.prototype = {}) even if the function is contain some code
 
 // * Augment prototype (add some properties and methods)
 player.prototype = {
@@ -32,8 +32,11 @@ player.prototype = {
 };
 console.log(player.prototype.fullName()); // Jhon Doe
 
-// ! Info : function player and player.prototype are separete (you can't access function from object and the opposite is true)
-
+/* 
+! Info : function player and player.prototype are separete (you can't access function from object, 
+! and the opposite is true)
+! No effection on the function
+*/
 // * you can access the elements of prototype if you create an constructor
 const player_1 = new player();
-console.log(player_1.fullName());
+console.log(player_1.fullName()); // Jhon Doe
